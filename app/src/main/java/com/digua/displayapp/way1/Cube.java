@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.digua.displayapp;
+package com.digua.displayapp.way1;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
