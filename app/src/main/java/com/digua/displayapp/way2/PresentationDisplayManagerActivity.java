@@ -1,36 +1,30 @@
 package com.digua.displayapp.way2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Presentation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.graphics.Point;
-import android.graphics.drawable.GradientDrawable;
 import android.hardware.display.DisplayManager;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.digua.displayapp.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * DisplayManager 方式双屏异显示
@@ -413,117 +407,5 @@ public class PresentationDisplayManagerActivity extends AppCompatActivity implem
         }
     }
 
-    /**
-     * The presentation to show on the secondary display.
-     * <p>
-     * Note that the presentation display may have different metrics from the display on which
-     * the main activity is showing so we must be careful to use the presentation's
-     * own {@link Context} whenever we load resources.
-     */
-    private final class DemoPresentation extends Presentation {
 
-        final DemoPresentationContents mContents;
-
-        public DemoPresentation(Context context, Display display,
-                DemoPresentationContents contents) {
-            super(context, display);
-            mContents = contents;
-        }
-
-        /**
-         * Sets the preferred display mode id for the presentation.
-         */
-        public void setPreferredDisplayMode(int modeId) {
-            mContents.displayModeId = modeId;
-
-            WindowManager.LayoutParams params = getWindow().getAttributes();
-            params.preferredDisplayModeId = modeId;
-            getWindow().setAttributes(params);
-        }
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            // Be sure to call the super class.
-            super.onCreate(savedInstanceState);
-
-            // Get the resources for the context of the presentation.
-            // Notice that we are getting the resources from the context of the presentation.
-            Resources r = getContext().getResources();
-
-            // Inflate the layout.
-            setContentView(R.layout.presentation_content);
-
-            final Display display = getDisplay();
-            final int displayId = display.getDisplayId();
-            final int photo = mContents.photo;
-
-            // Show a caption to describe what's going on.
-            TextView text = findViewById(R.id.text);
-            text.setText(r.getString(R.string.presentation_photo_text,
-                    photo, displayId, display.getName()));
-
-            // Show a n image for visual interest.
-            ImageView image =findViewById(R.id.image);
-            image.setImageDrawable(r.getDrawable(PHOTOS[photo]));
-
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setShape(GradientDrawable.RECTANGLE);
-            drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-
-            // Set the background to a random gradient.
-            Point p = new Point();
-            getDisplay().getSize(p);
-            drawable.setGradientRadius(Math.max(p.x, p.y) / 2);
-            drawable.setColors(mContents.colors);
-            findViewById(android.R.id.content).setBackground(drawable);
-        }
-    }
-
-    /**
-     * Information about the content we want to show in the presentation.
-     */
-    private final static class DemoPresentationContents implements Parcelable {
-        final int photo;
-        final int[] colors;
-        int displayModeId;
-
-        public static final Parcelable.Creator<DemoPresentationContents> CREATOR =
-                new Creator<DemoPresentationContents>() {
-                    @Override
-                    public DemoPresentationContents createFromParcel(Parcel in) {
-                        return new DemoPresentationContents(in);
-                    }
-
-                    @Override
-                    public DemoPresentationContents[] newArray(int size) {
-                        return new DemoPresentationContents[size];
-                    }
-                };
-
-        public DemoPresentationContents(int photo) {
-            this.photo = photo;
-            colors = new int[]{
-                    ((int) (Math.random() * Integer.MAX_VALUE)) | 0xFF000000,
-                    ((int) (Math.random() * Integer.MAX_VALUE)) | 0xFF000000};
-        }
-
-        private DemoPresentationContents(Parcel in) {
-            photo = in.readInt();
-            colors = new int[]{in.readInt(), in.readInt()};
-            displayModeId = in.readInt();
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(photo);
-            dest.writeInt(colors[0]);
-            dest.writeInt(colors[1]);
-            dest.writeInt(displayModeId);
-        }
-    }
 }
