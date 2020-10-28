@@ -85,7 +85,6 @@ public class PresentationDisplayManagerActivity extends AppCompatActivity implem
         // view layout definition, which is being set here as
         // the content of our screen.
         setContentView(R.layout.activity_presentation_display_manager);
-
         // Set up checkbox to toggle between showing all displays or only presentation displays.
         mShowAllDisplaysCheckbox = findViewById(R.id.show_all_displays);
         mShowAllDisplaysCheckbox.setOnCheckedChangeListener(this);
@@ -100,7 +99,7 @@ public class PresentationDisplayManagerActivity extends AppCompatActivity implem
     protected void onResume() {
         // Be sure to call the super class.
         super.onResume();
-
+        Log.e(TAG,"onResume");
         // Update our list of displays on resume.
         mDisplayListAdapter.updateContents();
 
@@ -137,6 +136,19 @@ public class PresentationDisplayManagerActivity extends AppCompatActivity implem
             presentation.dismiss();
         }
         mActivePresentations.clear();
+        Log.e(TAG,"onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG,"onRestart");
     }
 
     @Override

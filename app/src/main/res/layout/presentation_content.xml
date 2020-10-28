@@ -1,36 +1,557 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The Android Open Source Project
 
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-          http://www.apache.org/licenses/LICENSE-2.0
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:layout_height="match_parent">
 
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="消费详情"
+            android:textSize="14sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#333333"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-<!-- The content that we show on secondary displays.
-     See corresponding Java code PresentationActivity.java. -->
+        <View
+            android:id="@+id/line_title"
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="20dp"
+            android:layout_height="1px"/>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
+            android:id="@+id/ll_titleForm"
+            android:layout_below="@+id/line_title"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="单价"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="小计"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line_titleForm"
+            android:layout_below="@+id/ll_titleForm"
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/line_titleForm"
+            android:id="@+id/recycle_goodsInfoList"
+            android:layout_width="match_parent"
+            android:layout_above="@+id/ll_statictics"
+            android:layout_height="match_parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/ll_statictics"
+            android:orientation="horizontal"
+            android:background="#efefef"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="合计"
+                android:textSize="16sp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="10dp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="125.45元"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:visibility="gone"
+        android:paddingRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <!-- A picture for visual interest. -->
-    <ImageView android:id="@+id/image"
+        <TextView
+            android:text="消费详情"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="序号"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="单价"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="金桔7号（进口）"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#333333"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="3.99元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="金桔7号（进口）"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="2.33元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="金桔7号（进口）"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="1.09元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="金桔7号（进口）"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="6.34元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="名称"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="金桔7号（进口）"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="4.45元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#333333"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="合计"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#333333"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#333333"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:text="125.45元"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- A picture for visual interest. -->
+        <ImageView
+            android:id="@+id/image"
+            android:src="@drawable/frantic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- A caption. -->
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </FrameLayout>
+
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_weight="1"
+        android:background="#31DACA"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- A caption. -->
-    <TextView android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-</FrameLayout>
+</LinearLayout>

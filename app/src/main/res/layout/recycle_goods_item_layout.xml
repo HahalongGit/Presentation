@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_below="@+id/ll_titleForm"
+        android:background="#333333"
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="名称"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="1px"
+            android:background="#333333"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="金桔7号（进口）"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="1px"
+            android:background="#333333"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="2.33元"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="1px"
+            android:background="#333333"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="15.67元"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_titleForm"
+        android:layout_below="@+id/ll_titleForm"
+        android:background="#333333"
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_height="1px"/>
+
+</LinearLayout>
