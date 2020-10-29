@@ -1,6 +1,8 @@
 package com.digua.displayapp.way1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Presentation;
 import android.content.Context;
@@ -18,6 +20,9 @@ import android.widget.TextView;
 import com.digua.displayapp.MainActivity;
 import com.digua.displayapp.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * MediaRouter 方式双屏异显
  */
@@ -26,8 +31,17 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
     private final String TAG = "PresentationActivity";
 
     private MediaRouter mMediaRouter;
-    private DemoPresentation mPresentation;
+    private MediaRouterPresentation mPresentation;
     private GLSurfaceView mSurfaceView;
+
+    private RecyclerView mRecycleMainTradeInfoList;
+
+    private LinearLayoutManager mLinearLayoutManager;
+
+    private TradeGoodsInfoAdapter mTradeGoodsInfoAdapter;
+
+    private List<String> mTradeGoodsList = new ArrayList<>();
+
     private TextView mInfoTextView;
     private boolean mPaused;
 
@@ -48,6 +62,21 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
         // view layout definition, which is being set here as
         // the content of our screen.
         setContentView(R.layout.presentation_with_media_router_activity);
+
+        mRecycleMainTradeInfoList = findViewById(R.id.recycle_mainTradeInfoList);
+        mLinearLayoutManager = new LinearLayoutManager(this);
+        mRecycleMainTradeInfoList.setLayoutManager(mLinearLayoutManager);
+        mLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        mTradeGoodsList.add("卫龙大辣条");
+        mTradeGoodsList.add("立白洗衣液3L");
+        mTradeGoodsList.add("富士苹果3号");
+        mTradeGoodsList.add("金龙鱼食用油2.5L");
+        mTradeGoodsList.add("手切面条");
+        mTradeGoodsList.add("番茄");
+        mTradeGoodsList.add("山东大葱");
+        mTradeGoodsInfoAdapter = new TradeGoodsInfoAdapter(this,mTradeGoodsList);
+        mRecycleMainTradeInfoList.setAdapter(mTradeGoodsInfoAdapter);
+
 
         // Set up the surface view for visual interest.
         mSurfaceView = findViewById(R.id.surface_view);
@@ -112,7 +141,7 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
         // Show a new presentation if needed.
         if (mPresentation == null && presentationDisplay != null) {
             Log.i(TAG, "Showing presentation on display: " + presentationDisplay);
-            mPresentation = new DemoPresentation(this, presentationDisplay);
+            mPresentation = new MediaRouterPresentation(this, presentationDisplay);
             mPresentation.setOnDismissListener(mOnDismissListener);
             try {
                 mPresentation.show();
@@ -136,7 +165,7 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
                     mPresentation.getDisplay().getName()));
             mSurfaceView.setVisibility(View.INVISIBLE);
             mSurfaceView.onPause();
-            if (mPaused) {
+            if (mPaused) {// TODO: [RunningDigua create at 2020/10/29] //获取SurfaceView 修改 Presentation中的View状态
                 mPresentation.getSurfaceView().onPause();
             } else {
                 mPresentation.getSurfaceView().onResume();
@@ -190,40 +219,5 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
                 }
             };
 
-    /**
-     * The presentation to show on the secondary display.
-     * <p>
-     * Note that this display may have different metrics from the display on which
-     * the main activity is showing so we must be careful to use the presentation's
-     * own {@link Context} whenever we load resources.
-     * </p>
-     */
-    private final static class DemoPresentation extends Presentation {
-        private GLSurfaceView mSurfaceView;
 
-        public DemoPresentation(Context context, Display display) {
-            super(context, display);
-        }
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            // Be sure to call the super class.
-            super.onCreate(savedInstanceState);
-
-            // Get the resources for the context of the presentation.
-            // Notice that we are getting the resources from the context of the presentation.
-            Resources r = getContext().getResources();
-
-            // Inflate the layout.
-            setContentView(R.layout.presentation_with_media_router_content);
-
-            // Set up the surface view for visual interest.
-            mSurfaceView = findViewById(R.id.surface_view);
-            mSurfaceView.setRenderer(new CubeRenderer(false));
-        }
-
-        public GLSurfaceView getSurfaceView() {
-            return mSurfaceView;
-        }
-    }
 }

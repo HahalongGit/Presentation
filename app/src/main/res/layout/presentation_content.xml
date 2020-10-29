@@ -36,6 +36,7 @@
             android:id="@+id/ll_titleForm"
             android:layout_below="@+id/line_title"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:layout_width="match_parent"
@@ -117,20 +118,17 @@
             android:id="@+id/ll_statictics"
             android:orientation="horizontal"
             android:background="#efefef"
-            android:layout_marginBottom="20dp"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:text="合计"
-                android:textSize="16sp"
-                android:paddingTop="10dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="50dp"
-                android:paddingBottom="10dp"
+                android:textSize="14sp"
                 android:textColor="#333333"
-                android:layout_width="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <View
@@ -141,8 +139,9 @@
                 android:layout_height="match_parent"/>
 
             <TextView
+                android:id="@+id/tv_statistics"
                 android:text="125.45元"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="#333333"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

@@ -6,21 +6,16 @@
     android:paddingRight="15dp"
     android:layout_height="wrap_content">
 
-    <View
-        android:layout_below="@+id/ll_titleForm"
-        android:background="#333333"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_height="1px"/>
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="名称"
+            android:id="@+id/tv_serialNumber"
+            android:text="序号"
             android:textSize="14sp"
+            android:gravity="center"
             android:textColor="#333333"
             android:layout_width="50dp"
             android:layout_height="wrap_content"/>
@@ -33,12 +28,13 @@
             android:layout_height="match_parent"/>
 
         <TextView
+            android:id="@+id/tv_goodsName"
             android:text="金桔7号（进口）"
             android:textSize="14sp"
             android:textColor="#333333"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_width="110dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"/>
 
         <View
@@ -52,7 +48,7 @@
             android:text="2.33元"
             android:textSize="14sp"
             android:textColor="#333333"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"/>
 
         <View
@@ -66,7 +62,7 @@
             android:text="15.67元"
             android:textSize="14sp"
             android:textColor="#333333"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

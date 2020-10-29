@@ -39,6 +39,8 @@ public class DemoPresentation extends Presentation {
 
     private Context mContext;
 
+    private TextView tvStatistics;
+
     private RecyclerView mRecycleGoodsInfoList;
 
     private LinearLayoutManager mLinearLayoutManager;
@@ -103,6 +105,9 @@ public class DemoPresentation extends Presentation {
         String textStr = r.getString(R.string.presentation_photo_text, photo, displayId, display.getName());
         Log.e(TAG, "textStr:" + textStr);
         text.setText(textStr);
+        tvStatistics = findViewById(R.id.tv_statistics);
+        tvStatistics.setTextSize(14);
+        tvStatistics.setTextColor(Color.GREEN);
         mRecycleGoodsInfoList = findViewById(R.id.recycle_goodsInfoList);
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -112,7 +117,7 @@ public class DemoPresentation extends Presentation {
 
         mBanner = findViewById(R.id.banner);
         mBanner.setIndicator(new CircleIndicator(mContext))
-                .setLoopTime(5000)
+                .setLoopTime(2000)
                 .setAdapter(new BannerImageAdapter<Integer>(mImageList) {
                     @Override
                     public void onBindView(BannerImageHolder holder, Integer data, int position, int size) {
