@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -45,6 +45,7 @@
             android:layout_height="match_parent"/>
 
         <TextView
+            android:id="@+id/tv_salePrice"
             android:text="2.33元"
             android:textSize="14sp"
             android:textColor="#333333"
@@ -59,6 +60,7 @@
             android:layout_height="match_parent"/>
 
         <TextView
+            android:id="@+id/tv_amount"
             android:text="15.67元"
             android:textSize="14sp"
             android:textColor="#333333"

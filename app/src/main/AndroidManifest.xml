@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".way2.PresentationDisplayManagerActivity"></activity>
-        <activity android:name=".way1.PresentationWithMediaRouterActivity">
+        <activity
+            android:theme="@style/NoTitleAppTheme"
+            android:name=".way1.PresentationWithMediaRouterActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -43,6 +43,8 @@ public class TradeGoodsInfoAdapter extends RecyclerView.Adapter<TradeGoodsInfoAd
     public void onBindViewHolder(@NonNull TradeGoodsInfoViewHolder holder, int position) {
         holder.mTvGoodsName.setText(mList.get(position));
         holder.mTvSerialNumber.setText(""+position);
+        holder.mTvSalePrice.setText("3.44元");
+        holder.mTvAmount.setText("13.36元");
     }
 
     @Override
@@ -55,6 +57,10 @@ public class TradeGoodsInfoAdapter extends RecyclerView.Adapter<TradeGoodsInfoAd
         TextView mTvGoodsName;
         @BindView(R.id.tv_serialNumber)
         TextView mTvSerialNumber;
+        @BindView(R.id.tv_salePrice)
+        TextView mTvSalePrice;
+        @BindView(R.id.tv_amount)
+        TextView mTvAmount;
         public TradeGoodsInfoViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

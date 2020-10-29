@@ -6,10 +6,12 @@ import android.content.res.Resources;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Display;
+import android.widget.LinearLayout;
 
 import com.digua.displayapp.R;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +33,17 @@ public class MediaRouterPresentation extends Presentation {
 
     private TradeGoodsInfoAdapter mTradeGoodsInfoAdapter;
 
-    private List<String> mTradeGoodsList = new ArrayList<>();
+    private List<String> mTradeGoodsList = new LinkedList<>();
+
+    /**
+     * 插入新数据
+     * @param data
+     */
+    public void insertNewData(String data){
+        mTradeGoodsList.add(0,data);
+        mTradeGoodsInfoAdapter.notifyItemInserted(0);
+        mRecycleGoodsInfoList.scrollToPosition(0);
+    }
 
     public MediaRouterPresentation(Context context, Display display) {
         super(context, display);

@@ -15,24 +15,27 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.digua.displayapp.MainActivity;
 import com.digua.displayapp.R;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * MediaRouter 方式双屏异显
  */
-public class PresentationWithMediaRouterActivity extends AppCompatActivity {
+public class PresentationWithMediaRouterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private final String TAG = "PresentationActivity";
 
     private MediaRouter mMediaRouter;
     private MediaRouterPresentation mPresentation;
     private GLSurfaceView mSurfaceView;
+    private Button mBtnSearchGoods;
 
     private RecyclerView mRecycleMainTradeInfoList;
 
@@ -40,7 +43,7 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
 
     private TradeGoodsInfoAdapter mTradeGoodsInfoAdapter;
 
-    private List<String> mTradeGoodsList = new ArrayList<>();
+    private List<String> mTradeGoodsList = new LinkedList<>();
 
     private TextView mInfoTextView;
     private boolean mPaused;
@@ -63,6 +66,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
         // the content of our screen.
         setContentView(R.layout.presentation_with_media_router_activity);
 
+        mBtnSearchGoods = findViewById(R.id.btn_searchGoods);
+        mBtnSearchGoods.setOnClickListener(this);
+
         mRecycleMainTradeInfoList = findViewById(R.id.recycle_mainTradeInfoList);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mRecycleMainTradeInfoList.setLayoutManager(mLinearLayoutManager);
@@ -84,6 +90,16 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
 
         // Get a text view where we will show information about what's happening.
         mInfoTextView = findViewById(R.id.info);
+    }
+
+    /**
+     * 插入一条商品数据
+     * @param data
+     */
+    private void insertGoodsData(String data){
+        mTradeGoodsList.add(0,data);
+        mTradeGoodsInfoAdapter.notifyItemInserted(0);
+        mRecycleMainTradeInfoList.scrollToPosition(0);
     }
 
     @Override
@@ -160,9 +176,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
         // Show either the content in the main activity or the content in the presentation
         // along with some descriptive text about what is happening.
         if (mPresentation != null) {
-            mInfoTextView.setText(getResources().getString(
-                    R.string.presentation_with_media_router_now_playing_remotely,
-                    mPresentation.getDisplay().getName()));
+//            mInfoTextView.setText(getResources().getString(
+//                    R.string.presentation_with_media_router_now_playing_remotely,
+//                    mPresentation.getDisplay().getName()));
             mSurfaceView.setVisibility(View.INVISIBLE);
             mSurfaceView.onPause();
             if (mPaused) {// TODO: [RunningDigua create at 2020/10/29] //获取SurfaceView 修改 Presentation中的View状态
@@ -171,9 +187,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
                 mPresentation.getSurfaceView().onResume();
             }
         } else {
-            mInfoTextView.setText(getResources().getString(
-                    R.string.presentation_with_media_router_now_playing_locally,
-                    getWindowManager().getDefaultDisplay().getName()));
+//            mInfoTextView.setText(getResources().getString(
+//                    R.string.presentation_with_media_router_now_playing_locally,
+//                    getWindowManager().getDefaultDisplay().getName()));
             mSurfaceView.setVisibility(View.VISIBLE);
             if (mPaused) {
                 mSurfaceView.onPause();
@@ -219,5 +235,14 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity {
                 }
             };
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_searchGoods:{
+                insertGoodsData("厨房用清洁剂500ml");
+                mPresentation.insertNewData("厨房用清洁剂500ml");
+                break;
+            }
+        }
+    }
 }

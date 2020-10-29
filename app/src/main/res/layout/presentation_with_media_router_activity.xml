@@ -1,49 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
-<!-- See corresponding Java code PresentationWithMediaRouterActivity.java. -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+    android:background="#8E7DDAE6"
         android:orientation="vertical">
 
-    <!-- Message to show to use. -->
-    <TextView android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/presentation_with_media_router_activity_text"/>
-
-    <!-- Some information about what's going on. -->
     <TextView android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"
+        android:text="欢迎使用智能POS收银系统"
         android:gravity="center_vertical|center_horizontal"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_mainTradeInfoList"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_below="@+id/line_titleForm"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_mainTradeInfoList"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/line_titleForm"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/edit_barCode"
+                android:padding="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:hint="商品条码"
+                android:background="@drawable/bg_input_background"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btn_searchGoods"
+                android:text="查询商品"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:layout_toRightOf="@+id/edit_barCode"
+                android:background="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/btn_calculate"
+                android:text="结算"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="160dp"
+                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <!-- Some content for visual interest in the case where no presentation is showing. -->
     <android.opengl.GLSurfaceView android:id="@+id/surface_view"
