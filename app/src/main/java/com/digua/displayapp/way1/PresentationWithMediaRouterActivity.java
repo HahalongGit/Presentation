@@ -13,9 +13,11 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.digua.displayapp.MainActivity;
@@ -67,7 +69,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity imple
         setContentView(R.layout.presentation_with_media_router_activity);
 
         mBtnSearchGoods = findViewById(R.id.btn_searchGoods);
+        Button mBtnCalculate = findViewById(R.id.btn_calculate);
         mBtnSearchGoods.setOnClickListener(this);
+        mBtnCalculate.setOnClickListener(this);
 
         mRecycleMainTradeInfoList = findViewById(R.id.recycle_mainTradeInfoList);
         mLinearLayoutManager = new LinearLayoutManager(this);
@@ -142,8 +146,7 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity imple
 
     private void updatePresentation() {
         // Get the current route and its presentation display.
-        MediaRouter.RouteInfo route = mMediaRouter.getSelectedRoute(
-                MediaRouter.ROUTE_TYPE_LIVE_VIDEO);
+        MediaRouter.RouteInfo route = mMediaRouter.getSelectedRoute(MediaRouter.ROUTE_TYPE_LIVE_VIDEO);
         Display presentationDisplay = route != null ? route.getPresentationDisplay() : null;
 
         // Dismiss the current presentation if the display has changed.
@@ -199,6 +202,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity imple
         }
     }
 
+    /**
+     * 为在运行时即时检测新接入的显示器
+     */
     private final MediaRouter.SimpleCallback mMediaRouterCallback =
             new MediaRouter.SimpleCallback() {
                 @Override
@@ -213,6 +219,11 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity imple
                     updatePresentation();
                 }
 
+                /**
+                 * 当新的显示器连接时，系统会调用这个回调方法。
+                 * @param router
+                 * @param info
+                 */
                 @Override
                 public void onRoutePresentationDisplayChanged(MediaRouter router, MediaRouter.RouteInfo info) {
                     Log.d(TAG, "onRoutePresentationDisplayChanged: info=" + info);
@@ -241,6 +252,9 @@ public class PresentationWithMediaRouterActivity extends AppCompatActivity imple
             case R.id.btn_searchGoods:{
                 insertGoodsData("厨房用清洁剂500ml");
                 mPresentation.insertNewData("厨房用清洁剂500ml");
+                break;
+            } case R.id.btn_calculate:{
+                mPresentation.setGoodsInfoVisible(View.GONE);
                 break;
             }
         }
